@@ -2,17 +2,18 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
 import Image from "next/image";
 import Logo from "@/public/Logo.png"
-import { signIn } from "../lib/auth";
+import { signIn, signOut } from "../lib/auth";
+import { GithubAuthButton, GoogleAuthButton } from "./SubmitButton";
 export function AuthModal(){
   return (
     <Dialog>
         <DialogTrigger asChild>
-          <Button>Try for Free</Button>
+          <Button className="bg-rose-500">Try for Free</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[360px]">
          <DialogHeader className="flex flex-row gap-2 justify-center items-center">
-            <Image src={Logo} alt="Logo" className="size-10 rounded-xl"/>
-            <h4 className="text-3xl font-semibold">
+            <Image src={Logo} alt="Logo" className="size-9 rounded-xl"/>
+            <h4 className="text-4xl font-semibold pb-2">
               Sl<span className="text-primary">ate</span>
             </h4>
          </DialogHeader>
@@ -21,9 +22,14 @@ export function AuthModal(){
                 "use server"
                 await signIn('google')
             }} className="w-full">
-            <Button className="w-full">Sign in with Google</Button>
+           <GoogleAuthButton/>
             </form>
-           <Button>Sign in with Github</Button>
+            <form action={async() => {
+                "use server"
+                await signIn('github')
+            }}>
+            <GithubAuthButton/>
+            </form>
          </div>
         </DialogContent>
     </Dialog>
