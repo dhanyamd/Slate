@@ -48,7 +48,7 @@ export default async function Dashboardlayout({children} : {children : React.Rea
     </SheetTrigger>
     <SheetContent side="left" className='flex flex-col'>
    <nav className='grid gap-2 mt-10'>
-  Sla<span className='font-semibold leading-relaxed text-2xl pl-5'>te</span> 
+  <span className='font-semibold leading-relaxed text-2xl pl-5'>Slate</span> 
    <DahboardLinks />
    </nav>
     </SheetContent>
