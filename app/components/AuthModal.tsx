@@ -12,9 +12,9 @@ export function AuthModal(){
         </DialogTrigger>
         <DialogContent className="sm:max-w-[360px]">
          <DialogHeader className="flex flex-row gap-2 justify-center items-center">
-            <Image src={Logo} alt="Logo" className="size-9 rounded-xl"/>
-            <h4 className="text-4xl font-semibold pb-2">
-              Sl<span className="text-primary">ate</span>
+            <Image src={Logo} alt="Logo" className="size-11 rounded-xl"/>
+            <h4 className="text-3xl font-semibold pb-2">
+             Sl<span className="text-primary">ate</span>
             </h4>
          </DialogHeader>
          <div className="flex flex-col mt-5 gap-3">
