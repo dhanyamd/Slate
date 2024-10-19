@@ -1,14 +1,24 @@
-import { onBoardingSchema } from "@/lib/zodSchema";
+import { onBoardingSchema, onboardUsernameValidation } from "@/lib/zodSchema";
 import prisma from "./lib/db";
 import { getUser } from "./lib/hooks";
 import {parseWithZod} from "@conform-to/zod"
 
-export async function onBoardingRoute(formData : FormData){
+export async function onBoardingRoute(prevState : any,formData : FormData){
     const session = await getUser();
 
-    const submission = parseWithZod(formData,{
-      schema : onBoardingSchema
-    })
+  const submission = await parseWithZod(formData, {
+    schema : onboardUsernameValidation({
+        async isUsernameUnique(){
+            const existingUsername = await prisma.user.findUnique({
+                where : {
+                    userName : formData.get("userName") as string
+                }
+            });
+            return !existingUsername
+        }
+    }),
+    async : true
+  })
 
     if(submission.status !== "success"){
       return  submission.reply()
