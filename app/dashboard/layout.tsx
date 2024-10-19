@@ -1,8 +1,6 @@
 
 import Link from 'next/link'
 import React from 'react'
-import Logo from "@/public/Logo.png"
-import Image from 'next/image'
 import { DahboardLinks } from '../components/DahboardLinks'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
@@ -11,9 +9,28 @@ import { ThemeToggle } from '../components/ThemeToggle'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { auth, signOut } from '../lib/auth'
 import { getUser } from '../lib/hooks'
+import prisma from '../lib/db'
+import { redirect } from 'next/navigation'
+import Image from 'next/image'
+
+async function getData(userId : string){
+    const data = await prisma.user.findUnique({
+      where : {
+        id : userId
+      },
+      select : {
+        userName : true
+      }
+    })
+    if(!data?.userName){
+      return redirect('/onboarding')
+    }
+    return data;
+  }
 
 export default async function Dashboardlayout({children} : {children : React.ReactNode} ) {
-  const session = await getUser()
+  const session = await getUser();
+  const data = await getData(session.user?.id as string)
   return (
    <>
    <div className='min-h-screen w-full grid md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]'>
@@ -60,7 +77,7 @@ export default async function Dashboardlayout({children} : {children : React.Rea
    <DropdownMenu>
     <DropdownMenuTrigger asChild>
    <Button variant="secondary" size="icon" className='rounded-full'>
-    <img className='w-full h-full rounded-full' src={session?.user?.image as string} alt='profile image' width={20} height={20} />
+    <img className='w-full h-full rounded-full' src={session?.user?.image as string} alt='DP' width={20} height={20} />
    </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align='end'>

@@ -1,5 +1,4 @@
 'use client'
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -47,9 +46,9 @@ export default function OnboardingRoute(){
        <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-muted bg-muted 
        text-sm text-muted-foreground">Slate/</span>
        <Input 
-       name={fields.fullname.name}
-       defaultValue={fields.fullname.initialValue}
-       key={fields.fullname.key}
+       name={fields.userName.name}
+       defaultValue={fields.userName.initialValue}
+       key={fields.userName.key}
        className="rounded-l-none" placeholder="unique-user-1"/>
        </div>
        <p className="text-red-500 text-sm">{fields.userName.errors}</p>
