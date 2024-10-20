@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Navbar } from "./components/Navbar";
-import { auth } from "./lib/auth";
 import { redirect } from "next/navigation";
+import { auth } from "./lib/auth";
 
 export default async function Home() {
   const session = await auth();

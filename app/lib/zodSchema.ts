@@ -90,3 +90,8 @@ export function onboardUsernameValidation(options?: {
       fullname: z.string().min(3).max(150),
     });
   }
+
+export const SettingsSchema = z.object({
+  fullName : z.string().min(3).max(150),
+  profileImage : z.string()
+})
