@@ -32,7 +32,48 @@ export async function onBoardingRoute(prevState: any, formData: FormData) {
     },
     data: {
       userName: submission.value.userName,
-      name: submission.value.fullname
+      name: submission.value.fullname,
+      availability : {
+        createMany : {
+          data : [
+            {
+              day : "Monday",
+              fromTime : '8:00',
+              tillTime : '18:00'
+            },
+            {
+              day : "Tuesday",
+              fromTime : '8:00',
+              tillTime : '18:00'
+            },
+            {
+              day : "Wednesday",
+              fromTime : '8:00',
+              tillTime : '18:00'
+            },
+            {
+              day : "Thursday",
+              fromTime : '8:00',
+              tillTime : '18:00'
+            },
+            {
+              day : "Friday",
+              fromTime : '8:00',
+              tillTime : '18:00'
+            },
+            {
+              day : "Saturday",
+              fromTime : '8:00',
+              tillTime : '18:00'
+            },
+            {
+              day : "Sunday",
+              fromTime : '8:00',
+              tillTime : '18:00'
+            },
+          ]
+        }
+      }
     }
   })
   return redirect("/onboarding/grant-id")
