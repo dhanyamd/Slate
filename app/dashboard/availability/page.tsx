@@ -1,3 +1,4 @@
+import { updateAVailabilityAction } from "@/app/actions";
 import { SubmitButton } from "@/app/components/SubmitButton";
 import prisma from "@/app/lib/db";
 import { getUser } from "@/app/lib/hooks";
@@ -27,7 +28,7 @@ export default async function AvailabilityRoute(){
                 <CardTitle>Availability</CardTitle>
             <CardDescription>In this section, you can manage our availability</CardDescription>
             </CardHeader>
-            <form>
+            <form action={updateAVailabilityAction}>
                 <CardContent className="flex flex-col gap-y-4">
                 {data.map((item) => (
                     <div key={item.id} 
@@ -39,7 +40,7 @@ export default async function AvailabilityRoute(){
                     </div>
                     <Select name={`fromTime-${item.id}`} defaultValue={item.fromTime}>
                         <SelectTrigger className="w-full" >
-                            <SelectValue placeholder='8:00' />
+                            <SelectValue placeholder='From Time' />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>

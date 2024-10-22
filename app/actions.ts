@@ -4,6 +4,7 @@ import { parseWithZod } from "@conform-to/zod"
 import { redirect } from "next/navigation";
 import { getUser } from "./lib/hooks";
 import prisma from "./lib/db";
+import { revalidatePath } from "next/cache";
 
 export async function onBoardingAction(prevState: any, formData: FormData) {
   const session = await getUser();
@@ -103,4 +104,36 @@ export async function SettingsAction(prevState : any,formData : FormData){
 
 export async function updateAVailabilityAction(formData : FormData){
     const session = await getUser();
+    const rawData = Object.fromEntries(formData.entries());
+
+    const availabilityData = Object.keys(rawData)
+    .filter((key) => key.startsWith("id-"))
+    .map((key) => {
+      const id = key.replace("id-", "");
+       
+      return {
+        id,
+        isActive : rawData[`isActive-${id}`] == "on",
+        fromTime : rawData[`fromTime-${id}`] as string,
+        tillTime : rawData[`tillTime-${id}`] as string
+      }
+    })
+    try{
+      //avoids multiple db calls 
+      await prisma.$transaction(
+        availabilityData.map((item) => prisma.availability.update({
+          where : {
+            id : item.id
+          },
+          data : {
+            isActive : item.isActive,
+            fromTime : item.fromTime,
+            tillTime : item.tillTime
+          }
+        }))
+      )
+      revalidatePath('/dashboard/availability')
+    }catch(error){
+     console.log(error)
+    }
 }
