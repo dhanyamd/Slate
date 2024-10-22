@@ -3,14 +3,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useFormState } from "react-dom";
-import { onBoardingRoute } from "../actions";
+import { onBoardingAction } from "../actions";
 import { useForm } from "@conform-to/react"
 import { parseWithZod } from "@conform-to/zod";
 import { onBoardingSchema } from "@/app/lib/zodSchema";
 import { SubmitButton } from "../components/SubmitButton";
 
 export default function OnboardingRoute() {
-  const [lastResult, action] = useFormState(onBoardingRoute, undefined)
+  const [lastResult, action] = useFormState(onBoardingAction, undefined)
 
   const [form, fields] = useForm({
     lastResult,

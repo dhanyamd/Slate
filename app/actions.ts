@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { getUser } from "./lib/hooks";
 import prisma from "./lib/db";
 
-export async function onBoardingRoute(prevState: any, formData: FormData) {
+export async function onBoardingAction(prevState: any, formData: FormData) {
   const session = await getUser();
 
   const submission = await parseWithZod(formData, {
@@ -99,4 +99,8 @@ export async function SettingsAction(prevState : any,formData : FormData){
     }
   })
   return redirect('/dashboard')
+}
+
+export async function updateAVailabilityAction(formData : FormData){
+    const session = await getUser();
 }
