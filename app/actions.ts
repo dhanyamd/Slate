@@ -1,5 +1,5 @@
 'use server'
-import { onBoardingSchema, onboardUsernameValidation, SettingsSchema } from "@/app/lib/zodSchema";
+import { eventTypeSchema, onBoardingSchema, onboardUsernameValidation, SettingsSchema } from "@/app/lib/zodSchema";
 import { parseWithZod } from "@conform-to/zod"
 import { redirect } from "next/navigation";
 import { getUser } from "./lib/hooks";
@@ -136,4 +136,27 @@ export async function updateAVailabilityAction(formData : FormData){
     }catch(error){
      console.log(error)
     }
+}
+
+export async function CreateEventTypeAction(prevState: any, formData : FormData){
+  const session = await getUser();
+
+  const submission = await parseWithZod(formData, {
+    schema : eventTypeSchema
+  })
+
+  if(submission.status !== "success"){
+    return submission.reply();
+  }
+  await prisma.eventTypes.create({
+    data : {
+      title : submission.value.title,
+      duration : submission.value.duration,
+      url : submission.value.url,
+      description : submission.value.description,
+      videoCallSoftware : submission.value.videoCallSoftware,
+      userId : session.user?.id as string
+    }
+  })
+  return redirect('/dashboard')
 }
