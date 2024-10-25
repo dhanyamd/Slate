@@ -84,8 +84,8 @@ export default async function Dashboardlayout({ children }: { children: React.Re
                   <Button variant="secondary" size="icon" className='rounded-full'>
                     <img className='w-full h-full rounded-full' src={session?.user?.image as string} alt='DP' width={20} height={20} />
                   </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align='end'>
+                </DropdownMenuTrigger >
+                <DropdownMenuContent asChild align='end'>
                   <DropdownMenuLabel>
                     My account
                   </DropdownMenuLabel>

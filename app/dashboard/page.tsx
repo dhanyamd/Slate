@@ -3,7 +3,7 @@ import { EmptyState } from "../components/EmptyState";
 import prisma from "../lib/db";
 import { getUser } from "../lib/hooks";
 import Link from "next/link";
-import { ExternalLink, Link2, Pen, Settings, Trash, Users2 } from "lucide-react";
+import { ExternalLink, Link2, Pen, Settings, Trash, User, User2Icon, Users2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
@@ -94,7 +94,7 @@ export default async function DashboardPage() {
 
           <Link href="/" className="flex items-center p-5">
           <div className="flex-shrink-0">
-          <Users2 className="size-6" />
+          <User2Icon className="size-6" />
           </div>
 
           <div className="ml-5 w-0 flex-1">
