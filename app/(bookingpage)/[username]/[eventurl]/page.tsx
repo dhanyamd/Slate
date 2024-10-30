@@ -1,4 +1,6 @@
 import prisma from "@/app/lib/db";
+import { Calendar } from "@/components/bookForm/Calendar";
+import { RealCalendar } from "@/components/bookForm/RealCalendar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CalendarX, Clock, Video  } from "lucide-react";
@@ -44,7 +46,7 @@ export default async function BookingFormRoute({params} : {params : {username : 
     return (
         <div className="min-h-screen w-screen flex items-center justify-center">
            <Card className="max-w-[1000px] w-full mx-auto">
-            <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr,autom1fr]">
+            <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr,auto,1fr]">
             <div>
                 <img 
                 className="size-10 rounded-full"
@@ -73,7 +75,10 @@ export default async function BookingFormRoute({params} : {params : {username : 
                 </p>
                 </div>
             </div>
+            <span className="px-2">
             <Separator orientation="vertical" className="w-[1px] h-full" />
+            </span>
+            <RealCalendar daysofWeek={data.user?.availability as any}/>
             </CardContent>
             </Card> 
         </div>
