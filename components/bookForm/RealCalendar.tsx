@@ -31,7 +31,7 @@ export function RealCalendar({ daysofWeek }: iAppProps) {
   }, [searchParams]);
 
   const handleChangeDate = (date: DateValue) => {
-    console.log(date);
+    //console.log(date);
     setDate(date as CalendarDate);
     const url = new URL(window.location.href);
 
@@ -43,6 +43,7 @@ export function RealCalendar({ daysofWeek }: iAppProps) {
   const isDateUnavailable = (date: DateValue) => {
     const dayOfWeek = date.toDate(getLocalTimeZone()).getDay();
     // Adjust the index to match the daysofWeek array
+    //like Mon is 0 and Sun is 6 as in index
     const adjustedIndex = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
     return !daysofWeek[adjustedIndex].isActive;
   };
