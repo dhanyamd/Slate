@@ -1,6 +1,7 @@
 import prisma from "@/app/lib/db";
 import { Calendar } from "@/components/bookForm/Calendar";
 import { RealCalendar } from "@/components/bookForm/RealCalendar";
+import { Timetable } from "@/components/Timetabe";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { CalendarX, Clock, Video  } from "lucide-react";
@@ -46,7 +47,6 @@ export default async function BookingFormRoute({params, searchParams} : {params 
 }){
     const data = await getData(params.eventUrl, params.username)
     const selectedDate = searchParams.date ? new Date(searchParams.date) : new Date
-    
     const formattedDate = new Intl.DateTimeFormat("en-US", {
         weekday : "long",
         day : "numeric",
@@ -88,6 +88,8 @@ export default async function BookingFormRoute({params, searchParams} : {params 
             <Separator orientation="vertical" className="w-[1px] h-full" />
             </span>
             <RealCalendar daysofWeek={data.user?.availability as any}/>
+            <Separator orientation="vertical" className="w-[1px] h-full"/>
+            <Timetable selectedDate={selectedDate} userName={params.username}/>
             </CardContent>
             </Card> 
         </div>
