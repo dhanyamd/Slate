@@ -36,7 +36,6 @@ export async function GET(req: NextRequest) {
                 grantEmail: email,
             },
         });
-
         console.log({ grantId });
     } catch (error) {
         console.error("Error exchanging code for token:", error);

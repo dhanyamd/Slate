@@ -1,121 +1,144 @@
+import Link from "next/link";
+import { Menu } from "lucide-react";
 
-import Link from 'next/link'
-import React from 'react'
-import { DahboardLinks } from '../components/DahboardLinks'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { Button } from '@/components/ui/button'
-import { Menu } from 'lucide-react'
-import { ThemeToggle } from '../components/ThemeToggle'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { Button } from "@/components/ui/button";
 
-import { redirect } from 'next/navigation'
-import prisma from '../lib/db'
-import { getUser } from '../lib/hooks'
-import { signOut } from '../lib/auth'
-import { Toaster } from '@/components/ui/sonner'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { ReactNode } from "react";
+import prisma from "../lib/db";
+import { redirect } from "next/navigation";
+import Logo from "@/public/logo.png";
+import Image from "next/image";
 
-async function getData(userId: string) {
+import { Toaster } from "@/components/ui/sonner";
+import { auth, signOut } from "../lib/auth";
+import { DahboardLinks } from "../components/DahboardLinks";
+import { ThemeToggle } from "../components/ThemeToggle";
+
+async function getData(id: string) {
   const data = await prisma.user.findUnique({
     where: {
-      id: userId
+      id: id,
     },
     select: {
       userName: true,
       grantId: true,
-    }
-  })
+    },
+  });
+
   if (!data?.userName) {
-    return redirect('/onboarding')
+    return redirect("/onboarding");
   }
-  /* if(!data.grantId){
-       return redirect('/onboarding/grant-id')
-   }*/
+
+  if (!data.grantId) {
+    return redirect("/onboarding/grant-id");
+  }
+
   return data;
 }
 
-export default async function Dashboardlayout({ children }: { children: React.ReactNode }) {
-  const session = await getUser();
-  const data = await getData(session.user?.id as string)
+export default async function Dashboard({ children }: { children: ReactNode }) {
+  const session = await auth();
+
+  if (!session?.user) {
+    return redirect("/");
+  }
+
+  const data = await getData(session.user.id as string);
+
   return (
     <>
-      <div className='min-h-screen w-full grid md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]'>
-        <div className='hidden md:block border-r bg-muted/40'>
-          <div className='flex h-full max-h-screen flex-col gap-2'>
-            <div className='flex h-14 items-center pl-10 border-b px-4 lg:h-[60px] lg:px-6'>
-              <Link href="/" className='flex items-center gap-2 pl-4' >
-
-                <p className='text-2xl font-semibold leading-10'>Slate</p>
+      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+        <div className="hidden border-r bg-muted/40 md:block">
+          <div className="flex h-full max-h-screen flex-col gap-2">
+            <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+              <Link href="/" className="flex items-center gap-2 font-semibold">
+                <p className="text-2xl font-bold">
+                   Slate
+                </p>
               </Link>
             </div>
-
-            <div className='flex-1'>
-              <nav className='grid items-start ox-2 lg:px-4'>
+            <div className="flex-1">
+              <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                 <DahboardLinks />
               </nav>
             </div>
           </div>
         </div>
-
-        <div className='flex flex-col'>
-          <header className='h-14 flex items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6'>
+        <div className="flex flex-col">
+          <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
             <Sheet>
-              <SheetTrigger>
+              <SheetTrigger asChild>
                 <Button
-                  className='md:hidden shrink-0'
-                  size="icon"
                   variant="outline"
+                  size="icon"
+                  className="shrink-0 md:hidden"
                 >
-                  <Menu className='size-5' />
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className='flex flex-col'>
-                <nav className='grid gap-2 mt-10'>
-                  <span className='font-semibold leading-relaxed text-2xl pl-5'>Slate</span>
+              <SheetContent side="left" className="flex flex-col">
+                <nav className="grid gap-2 mt-10">
                   <DahboardLinks />
                 </nav>
               </SheetContent>
             </Sheet>
 
-            <div className='ml-auto flex items-center gap-x-4'>
+            <div className="ml-auto flex items-center gap-x-4">
               <ThemeToggle />
-
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="secondary" size="icon" className='rounded-full'>
-                    <img className='w-full h-full rounded-full' src={session?.user?.image as string} alt='DP' width={20} height={20} />
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="rounded-full"
+                  >
+                    <Image
+                      src={session.user.image as string}
+                      alt="Profile"
+                      width={20}
+                      height={20}
+                      className="w-full h-full rounded-full"
+                    />
+                    <span className="sr-only">Toggle user menu</span>
                   </Button>
-                </DropdownMenuTrigger >
-                <DropdownMenuContent asChild align='end'>
-                  <DropdownMenuLabel>
-                    My account
-                  </DropdownMenuLabel>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link href="/dashboard/settings">
-                      Settings
-                    </Link>
+                    <Link href="/dashboard/settings">Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <form className='w-full' action={async () => {
-                      "use server"
-                      await signOut()
-                    }}>
-                      <button className='w-full text-left'>
-                        Log out
-                      </button>
+                    <form
+                      className="w-full"
+                      action={async () => {
+                        "use server";
+                        await signOut();
+                      }}
+                    >
+                      <button className="w-full text-left">Log out</button>
                     </form>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </header>
-          <main className='flex flex-1 flex-col gap-4 p-4 lg:p-6 lg:gap-6'>
+          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
             {children}
           </main>
         </div>
       </div>
-      <Toaster richColors closeButton/>
+      <Toaster richColors closeButton />
     </>
-  )
+  );
 }
-
