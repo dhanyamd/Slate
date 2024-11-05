@@ -1,8 +1,11 @@
+import { SubmitButton } from "@/app/components/SubmitButton";
 import prisma from "@/app/lib/db";
 import { Calendar } from "@/components/bookForm/Calendar";
 import { RealCalendar } from "@/components/bookForm/RealCalendar";
 import { Timetable } from "@/components/Timetabe";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { CalendarX, Clock, Video  } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -43,7 +46,7 @@ async function getData(eventUrl : string, userName : string){
 }
 
 export default async function BookingFormRoute({params, searchParams} : {params : {username : string, eventUrl : string};
- searchParams: {date? : string}
+ searchParams: {date? : string, time? : string}
 }){
     const data = await getData(params.eventUrl, params.username)
     const selectedDate = searchParams.date ? new Date(searchParams.date) : new Date
@@ -52,48 +55,99 @@ export default async function BookingFormRoute({params, searchParams} : {params 
         day : "numeric",
         month : "long",
     }).format(selectedDate)
+    const showForm = !!searchParams.date && !!searchParams.time
     return (
         <div className="min-h-screen w-screen flex items-center justify-center">
-           <Card className="max-w-[1000px] w-full mx-auto">
-            <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr,auto,1fr]">
-            <div>
-                <img 
-                className="size-10 rounded-full"
-                src={data.user.image as string} alt="pfp"/>
-                <p className="text-sm font-medium mt-2 text-muted-foreground">{data.user.name}</p>
-                <h1 className="text-xl font-semibold mt-2 ">{data.title}</h1>
-                <p className="text-sm font-medium text-muted-foreground max-w-64 ">{data.description}</p>
-                <div className="flex flex-col mt-5 gap-y-3">
-                <p className="flex items-center">
-                <CalendarX className="size-4 mr-2 text-primary" />
-                <span className="text-sm font-medium text-muted-foreground">
-                  {formattedDate}
-                </span>
-                </p>
-                <p className="flex items-center">
-                <Clock className="size-4 mr-2 text-primary" />
-                <span className="text-sm font-medium text-muted-foreground">
-                  {data.duration} Minutes
-                </span>
-                </p>
-                <p className="flex items-center">
-                <Video className="size-4 mr-2 text-primary" />
-                <span className="text-sm font-medium text-muted-foreground">
-                 {data.videoCallSoftware}
-                </span>
-                </p>
+            {showForm ? (
+                    <Card className="max-w-[600px] w-full">
+                    <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr]">
+                    <div>
+                        <img 
+                        className="size-10 rounded-full"
+                        src={data.user.image as string} alt="pfp"/>
+                        <p className="text-sm font-medium mt-2 text-muted-foreground">{data.user.name}</p>
+                        <h1 className="text-xl font-semibold mt-2 ">{data.title}</h1>
+                        <p className="text-sm font-medium text-muted-foreground max-w-64 ">{data.description}</p>
+                        <div className="flex flex-col mt-5 gap-y-3">
+                        <p className="flex items-center">
+                        <CalendarX className="size-4 mr-2 text-primary" />
+                        <span className="text-sm font-medium text-muted-foreground">
+                          {formattedDate}
+                        </span>
+                        </p>
+                        <p className="flex items-center">
+                        <Clock className="size-4 mr-2 text-primary" />
+                        <span className="text-sm font-medium text-muted-foreground">
+                          {data.duration} Minutes
+                        </span>
+                        </p>
+                        <p className="flex items-center">
+                        <Video className="size-4 mr-2 text-primary" />
+                        <span className="text-sm font-medium text-muted-foreground">
+                         {data.videoCallSoftware}
+                        </span>
+                        </p>
+                        </div>
+                    </div>
+                   
+                    <Separator orientation="vertical" className="w-[1px] h-full"/>
+                    <form className="flex flex-col gap-y-4 pl-3">
+                        <div className="flex flex-col gap-y-2">
+                      <Label>Your name</Label>
+                      <Input placeholder="Your name"/>
+                        </div>
+                        <div className="flex flex-col gap-y-2">
+                            <Label>Your email</Label>
+                           <Input placeholder="john@gmail.com"/>
+                        </div>
+                        <SubmitButton className="w-full mt-9" text="Book meeting"/>
+                    </form>
+                   
+                    </CardContent>
+                    </Card> 
+            ) : (
+                <Card className="max-w-[1000px] w-full mx-auto">
+                <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr,auto,1fr]">
+                <div>
+                    <img 
+                    className="size-10 rounded-full"
+                    src={data.user.image as string} alt="pfp"/>
+                    <p className="text-sm font-medium mt-2 text-muted-foreground">{data.user.name}</p>
+                    <h1 className="text-xl font-semibold mt-2 ">{data.title}</h1>
+                    <p className="text-sm font-medium text-muted-foreground max-w-64 ">{data.description}</p>
+                    <div className="flex flex-col mt-5 gap-y-3">
+                    <p className="flex items-center">
+                    <CalendarX className="size-4 mr-2 text-primary" />
+                    <span className="text-sm font-medium text-muted-foreground">
+                      {formattedDate}
+                    </span>
+                    </p>
+                    <p className="flex items-center">
+                    <Clock className="size-4 mr-2 text-primary" />
+                    <span className="text-sm font-medium text-muted-foreground">
+                      {data.duration} Minutes
+                    </span>
+                    </p>
+                    <p className="flex items-center">
+                    <Video className="size-4 mr-2 text-primary" />
+                    <span className="text-sm font-medium text-muted-foreground">
+                     {data.videoCallSoftware}
+                    </span>
+                    </p>
+                    </div>
                 </div>
-            </div>
-            <span className="px-2">
-            <Separator orientation="vertical" className="w-[1px] h-full" />
-            </span>
-            <RealCalendar daysofWeek={data.user?.availability as any}/>
-            <span className="pl-2">
-            <Separator orientation="vertical" className="w-[1px] h-full"/>
-            </span>
-            <Timetable meetingDuration={data.duration} selectedDate={selectedDate} userName={params.username}/>
-            </CardContent>
-            </Card> 
+                <span className="px-2">
+                <Separator orientation="vertical" className="w-[1px] h-full" />
+                </span>
+                <RealCalendar daysofWeek={data.user?.availability as any}/>
+                <span className="pl-2">
+                <Separator orientation="vertical" className="w-[1px] h-full"/>
+                </span>
+                <Timetable meetingDuration={data.duration} selectedDate={selectedDate} userName={params.username}/>
+                </CardContent>
+                </Card> 
+            )}
+      
         </div>
     )
 }
