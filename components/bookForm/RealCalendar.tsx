@@ -31,7 +31,6 @@ export function RealCalendar({ daysofWeek }: iAppProps) {
   }, [searchParams]);
 
   const handleChangeDate = (date: DateValue) => {
-    //console.log(date);
     setDate(date as CalendarDate);
     const url = new URL(window.location.href);
 
@@ -52,7 +51,7 @@ export function RealCalendar({ daysofWeek }: iAppProps) {
     <Calendar
       minValue={today(getLocalTimeZone())}
       defaultValue={today(getLocalTimeZone())}
-      value={date}
+      value={date} 
       onChange={handleChangeDate}
       isDateUnavailable={isDateUnavailable}
     />
