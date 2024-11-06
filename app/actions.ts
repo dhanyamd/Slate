@@ -191,8 +191,10 @@ export async function createMeetingAction(formData : FormData){
    const meetingLength = Number(formData.get("meetingLength")) 
 
    const startDateTime = new Date(`${eventDate}T${fromTime}:00`)
+   console.log(startDateTime)
    //minuted to milliseconds
    const endDateTime = new Date(startDateTime.getTime() + meetingLength * 60000)
+   console.log(endDateTime)
   
     nylas.events.create({
     identifier : getUser.grantId as string,

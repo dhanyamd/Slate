@@ -55,6 +55,7 @@ export default async function BookingFormRoute({params, searchParams} : {params 
         day : "numeric",
         month : "long",
     }).format(selectedDate)
+    //basically !! converts showForm into boolean
     const showForm = !!searchParams.date && !!searchParams.time
     return (
         <div className="min-h-screen w-screen flex items-center justify-center">
