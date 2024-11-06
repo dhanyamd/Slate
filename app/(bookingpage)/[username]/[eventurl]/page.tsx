@@ -1,6 +1,6 @@
+import { createMeetingAction } from "@/app/actions";
 import { SubmitButton } from "@/app/components/SubmitButton";
 import prisma from "@/app/lib/db";
-import { Calendar } from "@/components/bookForm/Calendar";
 import { RealCalendar } from "@/components/bookForm/RealCalendar";
 import { Timetable } from "@/components/Timetabe";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,12 +10,12 @@ import { Separator } from "@/components/ui/separator";
 import { CalendarX, Clock, Video  } from "lucide-react";
 import { notFound } from "next/navigation";
 
-async function getData(eventUrl : string, userName : string){
+async function getData(eventUrl : string, username : string){
     const data = await prisma.eventTypes.findFirst({
         where : {
             url : eventUrl,
             user : {
-                userName : userName
+                userName : username
             },
             active : true
         },
@@ -91,14 +91,24 @@ export default async function BookingFormRoute({params, searchParams} : {params 
                     </div>
                    
                     <Separator orientation="vertical" className="w-[1px] h-full"/>
-                    <form className="flex flex-col gap-y-4 pl-3">
+                    <form className="flex flex-col gap-y-4 pl-3" action={createMeetingAction}>
+                    
+              <input type="hidden" name="eventTypeId" value={data.id} />
+              <input type="hidden" name="userName" value={params.username} />
+              <input type="hidden" name="fromTime" value={searchParams.time} />
+              <input type="hidden" name="eventData" value={searchParams.date} />
+              <input
+                type="hidden"
+                name="meetingLength"
+                value={data.duration}
+              />
                         <div className="flex flex-col gap-y-2">
                       <Label>Your name</Label>
-                      <Input placeholder="Your name"/>
+                      <Input name="name" placeholder="Your name"/>
                         </div>
                         <div className="flex flex-col gap-y-2">
                             <Label>Your email</Label>
-                           <Input placeholder="john@gmail.com"/>
+                           <Input name="email" placeholder="john@gmail.com"/>
                         </div>
                         <SubmitButton className="w-full mt-9" text="Book meeting"/>
                     </form>

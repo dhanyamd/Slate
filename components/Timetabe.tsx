@@ -63,7 +63,7 @@ import { nylas } from "@/app/lib/nylas";
       fromTime: string | undefined;
       tillTime: string | undefined;
     },
-    nylasData: NylasResponse<GetFreeBusyResponse[]>,
+    nylasData: NylasResponse<GetFreeBusyResponse[] >,
     date: string,
     duration: number
   ) {
@@ -95,10 +95,10 @@ import { nylas } from "@/app/lib/nylas";
       allSlots.push(currentSlot);
       currentSlot = addMinutes(currentSlot, duration);
     }
-  
     // Filter out busy slots and slots before the current time
     const freeSlots = allSlots.filter((slot) => {
       const slotEnd = addMinutes(slot, duration);
+    
       return (
         isAfter(slot, now) && // Ensure the slot is after the current time
         !busySlots.some(
@@ -134,7 +134,6 @@ import { nylas } from "@/app/lib/nylas";
       formattedDate,
       meetingDuration
     );
-    console.log(availableSlots)
   
     return (
       <div className="pl-3">

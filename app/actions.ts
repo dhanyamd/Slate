@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { getUser } from "./lib/hooks";
 import prisma from "./lib/db";
 import { revalidatePath } from "next/cache";
+import { nylas } from "./lib/nylas";
 
 export async function onBoardingAction(prevState: any, formData: FormData) {
   const session = await getUser();
@@ -159,4 +160,66 @@ export async function CreateEventTypeAction(prevState: any, formData : FormData)
     }
   })
   return redirect('/dashboard')
+}
+
+export async function createMeetingAction(formData : FormData){
+   const getUser = await prisma.user.findUnique({
+    where : {
+      userName : formData.get("userName") as string
+    },
+    select : {
+      grantEmail: true,
+      grantId : true
+    }
+   })
+   if(!getUser){
+    throw new Error("User not found")
+   }
+
+   const eventType = await prisma.eventTypes.findUnique({
+    where : {
+      id : formData.get("eventTypeId") as string
+    },
+    select : {
+      title : true,
+      description : true
+    }
+   })
+
+   const fromTime = formData.get("fromTime") as string
+   const eventDate = formData.get("eventData") as string
+   const meetingLength = Number(formData.get("meetingLength")) 
+
+   const startDateTime = new Date(`${eventDate}T${fromTime}:00`)
+   //minuted to milliseconds
+   const endDateTime = new Date(startDateTime.getTime() + meetingLength * 60000)
+  
+    nylas.events.create({
+    identifier : getUser.grantId as string,
+    requestBody : {
+      title : eventType?.title,
+      description : eventType?.description,
+      when : {
+        startTime : Math.floor(startDateTime.getTime()/1000),
+        endTime : Math.floor(endDateTime.getTime()/1000)
+      },
+      conferencing: {
+        autocreate: {},
+        provider: "Google Meet",
+      },
+      participants: [
+        {
+          name: formData.get("name") as string,
+          email: formData.get("email") as string,
+          status: "yes",
+        },
+      ],
+    },
+    queryParams: {
+      calendarId: getUser?.grantEmail as string,
+      notifyParticipants: true,
+    },
+  });
+
+  return redirect(`/success`);
 }
