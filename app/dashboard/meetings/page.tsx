@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Video } from "lucide-react";
 import { SubmitButton } from "@/app/components/SubmitButton";
 import { Separator } from "@/components/ui/separator";
+import { cancelMeetingAction } from "@/app/actions";
 
 async function getData(userId : string){
   const data = await prisma.user.findUnique({
@@ -53,7 +54,8 @@ export default async function MeetingsRoute(){
         </CardHeader>
         <CardContent>
             {data.data.map((item) => (
-               <form>
+               <form action={cancelMeetingAction}>
+                <input type="hidden" name="eventId" value={item.id}/>
                  <div className="grid grid-cols-3 justify-between items-center">
                  <div className="text-muted-foreground text-sm">
                     <p>{format(fromUnixTime(item.when.startTime), "EEE, dd MMM")}</p>
