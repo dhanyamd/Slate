@@ -29,7 +29,7 @@ import { useState } from "react";
 import ButtonGroup from "@/components/ButtonGroup";
 import { eventTypeSchema } from "../lib/zodSchema";
 import { SubmitButton } from "./SubmitButton";
-import { CreateEventTypeAction } from "../actions";
+import {  EditEventTypeAction } from "../actions";
 
 interface iAppProps {
   id: string;
@@ -50,7 +50,7 @@ export function EditEventTypeForm({
   callProvider,
   id,
 }: iAppProps) {
-  const [lastResult, action] = useFormState(CreateEventTypeAction, undefined);
+  const [lastResult, action] = useFormState(EditEventTypeAction, undefined);
   const [form, fields] = useForm({
     lastResult,
 

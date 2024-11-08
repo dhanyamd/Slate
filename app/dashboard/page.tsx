@@ -113,8 +113,12 @@ export default async function DashboardPage() {
           </div>
           </Link>
           <div className="bg-muted px-5 py-3 justify-between flex items-center">
-            <Switch />
-            <Button> event</Button>
+            <Switch defaultChecked/>
+            <Button asChild> 
+              <Link href={`/dashboard/event/${item.id}`}>
+              Event event
+              </Link>
+            </Button>
             </div>
         </div>
       ))}

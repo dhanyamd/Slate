@@ -226,7 +226,7 @@ export async function createMeetingAction(formData : FormData){
   return redirect(`/success`);
 }
 
-export async function cancelMeetingAction(formData : FormData){
+export async function cancelMeetingAction( formData : FormData){
   const session = await getUser()
   
   const userData = await prisma.user.findUnique({
@@ -251,4 +251,30 @@ export async function cancelMeetingAction(formData : FormData){
   });
 
   revalidatePath("/dashboard/meetings");
+}
+
+export async function EditEventTypeAction(prevState : any,formData : FormData){
+  const session = await getUser()
+ 
+  const submission =  parseWithZod(formData, {
+    schema : eventTypeSchema
+  })
+  if(submission.status !== "success"){
+    return submission.reply();
+  }
+  const data = await prisma.eventTypes.update({
+    where: {
+      id: formData.get("id") as string,
+      userId: session.user?.id as string,
+    },
+    data: {
+      title: submission.value.title,
+      duration: submission.value.duration,
+      url: submission.value.url,
+      description: submission.value.description,
+      videoCallSoftware: submission.value.videoCallSoftware,
+    },
+  });
+
+  return redirect("/dashboard");
 }

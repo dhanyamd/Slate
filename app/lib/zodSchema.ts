@@ -61,7 +61,7 @@ export function onboardUsernameValidation(options?: {
         })
         // Pipe the schema so it runs only if the email is valid
         .pipe(
-          // Note: The callback cannot be async here
+          // The callback cannot be async here
           // As we run zod validation synchronously on the client
           z.string().superRefine((_, ctx) => {
             // This makes Conform to fallback to server validation
