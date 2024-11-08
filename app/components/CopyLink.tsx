@@ -14,7 +14,7 @@ export function CopyLink({meetingUrl} : {meetingUrl : string}){
       }
     }
   return (
-    <DropdownMenuItem onSelect={handleCopy}>
+    <DropdownMenuItem className="pr-7" onSelect={handleCopy}>
        Copy
     </DropdownMenuItem>
   )

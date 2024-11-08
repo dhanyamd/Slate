@@ -81,9 +81,12 @@ export default async function DashboardPage() {
                 <Link2 className="mr-2 size-4"/>
                 <CopyLink meetingUrl={`${process.env.NEXT_PUBLIC_URL}/${data.userName}/${item.url}`}/>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Pen className="mr-2 size-4"/> Edit
-              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                        <Link href={`/dashboard/event/${item.id}`}>
+                          <Pen className="mr-2 h-4 w-4" />
+                          <span>Edit</span>
+                        </Link>
+                      </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator/>
             <DropdownMenuItem>
@@ -111,7 +114,7 @@ export default async function DashboardPage() {
           </Link>
           <div className="bg-muted px-5 py-3 justify-between flex items-center">
             <Switch />
-            <Button>Edit event</Button>
+            <Button> event</Button>
             </div>
         </div>
       ))}
