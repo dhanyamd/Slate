@@ -147,11 +147,11 @@ export default async function BookingFormRoute({params, searchParams} : {params 
                     </p>
                     </div>
                 </div>
-                <span className="px-2">
+                <span className="pr-4">
                 <Separator orientation="vertical" className="w-[1px] h-full" />
                 </span>
                 <RealCalendar daysofWeek={data.user?.availability as any}/>
-                <span className="pl-2">
+                <span className="pl-4">
                 <Separator orientation="vertical" className="w-[1px] h-full"/>
                 </span>
                 <Timetable meetingDuration={data.duration} selectedDate={selectedDate} userName={params.username}/>
