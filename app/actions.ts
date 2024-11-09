@@ -314,3 +314,16 @@ export async function EditEventTypeAction(prevState : any,formData : FormData){
 
   return redirect("/dashboard");
 }
+
+export async function DeleteEventTypeAction(formData: FormData) {
+  const session = await getUser();
+
+  const data = await prisma.eventTypes.delete({
+    where: {
+      id: formData.get("id") as string,
+      userId: session.user?.id as string,
+    },
+  });
+
+  return redirect("/dashboard");
+}

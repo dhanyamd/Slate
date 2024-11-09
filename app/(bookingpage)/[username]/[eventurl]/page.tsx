@@ -58,7 +58,7 @@ export default async function BookingFormRoute({params, searchParams} : {params 
     //basically !! converts showForm into boolean
     const showForm = !!searchParams.date && !!searchParams.time
     return ( //from-neutral-600  to-zinc-40
-        <div className="min-h-screen w-screen flex items-center justify-center">
+        <div className="min-h-screen rounded-sm w-screen flex items-center justify-center">
             {showForm ? (
                     <Card className="max-w-[600px] w-full">
                     <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr]">
@@ -117,7 +117,7 @@ export default async function BookingFormRoute({params, searchParams} : {params 
                     </CardContent>
                     </Card> 
             ) : (
-                <Card className="max-w-[1000px] w-full mx-auto">
+                <Card className="max-w-[1000px] rounded-xl w-full mx-auto">
                 <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr,auto,1fr]">
                 <div>
                     <img 
