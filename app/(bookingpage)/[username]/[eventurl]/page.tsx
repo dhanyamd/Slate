@@ -117,8 +117,8 @@ export default async function BookingFormRoute({params, searchParams} : {params 
                     </CardContent>
                     </Card> 
             ) : (
-                <Card className="max-w-[1000px] rounded-xl w-full mx-auto">
-                <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr,auto,1fr]">
+                <Card className="max-w-[1000px] h-[450px] items-center rounded-2xl w-full mx-auto">
+                <CardContent className="p-5 mt-4 md:grid md:grid-cols-[1fr,auto,1fr,auto,1fr]">
                 <div>
                     <img 
                     className="size-10 rounded-full"
