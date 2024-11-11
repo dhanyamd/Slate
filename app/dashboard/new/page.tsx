@@ -19,6 +19,9 @@ type VideoCallProvider = "Zoom Meeting" | "Google Meet" | "Microsoft Teams"
 
 export default function DashboardNewPage(){
     const [activePlatfrom, setActivePlatform] = useState<VideoCallProvider>("Google Meet") 
+    const togglePlatform = (platform: VideoCallProvider) => {
+      setActivePlatform(platform);
+    };
     const [lastResult, action] = useFormState(CreateEventTypeAction, undefined)
     const [form, fields] = useForm({
         lastResult,
@@ -95,26 +98,45 @@ export default function DashboardNewPage(){
                   <Label>Video Call Provider</Label>
                   <input type="hidden" name={fields.videoCallSoftware.name} value={activePlatfrom}/>
                   <ButtonGroup>
-                    <Button
-                    type="button" 
-                    variant={activePlatfrom === "Zoom Meeting" ? "secondary" : "outline"}
-                    onClick={() => setActivePlatform("Zoom Meeting")} className="w-full">Zoom</Button>
-                    <Button 
-                    type="button"
-                  variant={activePlatfrom === "Google Meet" ? "secondary" : "outline"}
-                    onClick={() => setActivePlatform("Google Meet")} className="w-full">Google meet</Button>
-                    <Button
-                    type="button"
-                   variant={activePlatfrom === "Microsoft Teams" ? "secondary" : "outline"}
-                    onClick={() => setActivePlatform("Microsoft Teams")} className="w-full">Microsoft Teams</Button>
-                  </ButtonGroup>
-                  <p className="text-red-500 text-sm">{fields.videoCallSoftware.errors}</p>
-                    </div>
-                </CardContent>
-                <CardFooter className="w-full flex justify-between">
-                    <Button variant="secondary" asChild>
-                       <Link href="/dashboard">Cancel</Link>
-                    </Button>
+                  <Button
+                  onClick={() => togglePlatform("Zoom Meeting")}
+                  type="button"
+                  className="w-full"
+                  variant={
+                    activePlatfrom === "Zoom Meeting" ? "secondary" : "outline"
+                  }
+                >
+                  Zoom
+                </Button>
+                <Button
+                  onClick={() => togglePlatform("Google Meet")}
+                  type="button"
+                  className="w-full"
+                  variant={
+                    activePlatfrom === "Google Meet" ? "secondary" : "outline"
+                  }
+                >
+                  Google Meet
+                </Button>
+                <Button
+                  variant={
+                    activePlatfrom === "Microsoft Teams"
+                      ? "secondary"
+                      : "outline"
+                  }
+                  type="button"
+                  className="w-full"
+                  onClick={() => togglePlatform("Microsoft Teams")}
+                >
+                  Microsoft Teams
+                </Button>
+              </ButtonGroup>
+            </div>
+          </CardContent>
+          <CardFooter className="w-full flex justify-between">
+            <Button asChild variant="secondary">
+              <Link href="/dashboard">Cancel</Link>
+            </Button>
                     <SubmitButton text="Create Event Type"/>
                 </CardFooter>
             </form>

@@ -8,30 +8,38 @@ import { Switch } from "@/components/ui/switch";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { CopyLink } from "../components/CopyLink";
 import { MenuActiveSwitcher } from "../components/EventSwitcher";
+import { notFound } from "next/navigation";
 
 async function getData( id : string){
   const data = await prisma.user.findUnique({
-    where : {
-      id : id
+    where: {
+      id: id,
     },
-    select : {
-      userName : true,
-      eventType : {
-        select : {
-          id : true,
-          active : true,
-          url : true,
-          title : true,
-          duration : true
-        }
-      }
-    }
-  })
-  if(!data){
-    return null
+
+    select: {
+      eventType: {
+        select: {
+          id: true,
+          active: true,
+          title: true,
+          url: true,
+          duration: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+      userName: true,
+    },
+  });
+
+  if (!data) {
+    return notFound();
   }
+
   return data;
 }
+
 export default async function DashboardPage() {
   const session = await getUser();
   const data = await getData(session?.user?.id as string)

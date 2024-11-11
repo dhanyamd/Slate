@@ -10,26 +10,27 @@ import { Separator } from "@/components/ui/separator";
 import { cancelMeetingAction } from "@/app/actions";
 
 async function getData(userId : string){
-  const data = await prisma.user.findUnique({
-    where : {
-        id : userId
+  const userData = await prisma.user.findUnique({
+    where: {
+      id: userId,
     },
-    select : {
-        grantEmail : true,
-        grantId : true
-    }
-  })
-  if(!data){
-    throw new Error("User not found")
-  }
-  
-  const userdata = await nylas.events.list({
-    identifier : data.grantId as string,
-    queryParams : {
-        calendarId : data.grantEmail as string
-    }
+    select: {
+      grantId: true,
+      grantEmail: true,
+    },
   });
-  return userdata
+
+  if (!userData) {
+    throw new Error("User not found");
+  }
+  const data = await nylas.events.list({
+    identifier: userData?.grantId as string,
+    queryParams: {
+      calendarId: userData?.grantEmail as string,
+    },
+  });
+
+  return data;
 }
 
 export default async function MeetingsRoute(){
