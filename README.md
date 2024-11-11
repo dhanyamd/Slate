@@ -1,11 +1,12 @@
 Slate is a lightweight scheduling and booking platform built on top of nextjs and nylas 
 
 Features include :
-. Let users book and schedule events based of your calendar/google calendar
-. Send unique invites via email to confirm booking
-. Book in your convinient time and date using the calendar
-. Tweak settings, customise your availblity hours and edit events
-. Check out your meetings info in the meetings tab
+
+   1. Let users book and schedule events based of your calendar/google calendar
+   2. Send unique invites via email to confirm booking
+   3. Book in your convinient time and date using the calendar
+   4.  Tweak settings, customise your availblity hours and edit events
+   5. Check out your meetings info in the meetings tab
 
 
 ![big](https://github.com/user-attachments/assets/4cc8a4de-7122-4dba-a93c-a2a65107f76f)
