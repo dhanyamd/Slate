@@ -10,10 +10,10 @@ import { Separator } from "@/components/ui/separator";
 import { CalendarX, Clock, Video  } from "lucide-react";
 import { notFound } from "next/navigation";
 
-async function getData(eventUrl : string, username : string){
+async function getData(eventurl : string, username : string){
     const data = await prisma.eventTypes.findFirst({
         where : {
-            url : eventUrl,
+            url : eventurl,
             user : {
                 userName : username
             },
@@ -45,10 +45,10 @@ async function getData(eventUrl : string, username : string){
     return data;
 }
 
-export default async function BookingFormRoute({params, searchParams} : {params : {username : string, eventUrl : string};
+export default async function BookingFormRoute({params, searchParams} : {params : {username : string, eventurl : string};
  searchParams: {date? : string, time? : string}
 }){
-    const data = await getData(params.eventUrl, params.username)
+    const data = await getData(params.eventurl, params.username)
     const selectedDate = searchParams.date ? new Date(searchParams.date) : new Date
     const formattedDate = new Intl.DateTimeFormat("en-US", {
         weekday : "long",
