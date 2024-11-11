@@ -7,6 +7,7 @@ Features include :
    3. Book in your convinient time and date using the calendar
    4.  Tweak settings, customise your availblity hours and edit events
    5. Check out your meetings info in the meetings tab
+      
 
 
 ![big](https://github.com/user-attachments/assets/4cc8a4de-7122-4dba-a93c-a2a65107f76f)
