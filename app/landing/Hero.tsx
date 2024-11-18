@@ -6,9 +6,8 @@ export default function Hero(){
     return (
         <section className="py-24">
           <div className="container flex flex-col items-center justify-center">
-          <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-500 to-rose-400 text-neutral-950 rounded-full font-semibold">
-
-           ✨ check it out now → </div>
+          <div className="inline-flex py-1 cursor-pointer hover:border-pink-500 border-2 px-3 bg-gradient-to-r from-teal-500 to-lime-500 text-neutral-950 rounded-full font-semibold">
+           &#10038; check it out now → </div>
           <h1 className="text-6xl font-medium text-center max-w-5xl mt-6">
              Impactful calendar scheduler {""}
             <span> to handle meetings 🪄</span> </h1>

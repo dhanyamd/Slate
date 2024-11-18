@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { auth } from "./lib/auth";
 import Hero from "./landing/Hero";
 import Booking from "@/public/big.png"
+import Introduction from "./landing/Introduction";
+import Features from "./landing/Features";
 
 export default async function Home() {
   const session = await auth();
@@ -21,6 +23,12 @@ export default async function Home() {
        src={Booking}
        alt="bookform"
        />
+        </div>
+        <div>
+          <Introduction/>
+        </div>
+        <div>
+          <Features />
         </div>
     </div>
   )
