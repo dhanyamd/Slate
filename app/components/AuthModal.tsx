@@ -8,13 +8,12 @@ export function AuthModal(){
   return (
     <Dialog>
         <DialogTrigger asChild>
-          <Button className="bg-rose-500">Try for Free</Button>
+          <Button className="bg-rose-500 text-md">Sign in</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[360px]">
          <DialogHeader className="flex flex-row gap-2 justify-center items-center">
-            <Image src={Logo} alt="Logo" className="size-11 rounded-xl"/>
             <h4 className="text-3xl font-semibold pb-2">
-             Sl<span className="text-primary">ate</span>
+             <span className="text-white">Slate</span>
             </h4>
          </DialogHeader>
          <div className="flex flex-col mt-5 gap-3">
