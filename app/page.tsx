@@ -7,6 +7,7 @@ import Booking from "@/public/big.png"
 import Introduction from "./landing/Introduction";
 import Features from "./landing/Features";
 import FooterDetails from "./landing/FooterDetail";
+import Footer from "./landing/Footer";
 
 export default async function Home() {
   const session = await auth();
@@ -33,6 +34,9 @@ export default async function Home() {
         </div>
         <div>
           <FooterDetails/>
+        </div>
+        <div className="pt-[5rem] ">
+          <Footer/>
         </div>
     </div>
   )
