@@ -2,8 +2,9 @@ import Image from "next/image"
 import FeatureCard from "./FeatureCard"
 import Tag from "./Tag"
 import Preview from "@/public/preview.png"
-import Bookings from "@/public/bookings.png"
+import Preview1 from "@/public/2.png"
 import Track from "@/public/evtype.png"
+import Key from "./Key"
 
 const features = [
     "Build events",
@@ -23,31 +24,33 @@ export default function Features(){
                 </div>
             <h2 className="text-6xl font-medium text-center mt-6">Where power meets {""} 
                 <span className="text-rose-500">Simplicity</span></h2>
-            <div className="mt-12 grid grid-cols-1 gap-8 ">
-                <FeatureCard title="Real-time tracking events" description="Manage, track and cancel meetings with a unique invite link for each!">
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-8 ">
+                <FeatureCard className="col-span-2" title="Real-time tracking events" description="Manage, track and cancel meetings with a unique invite link for each!">
                 <div>
                     <div className="flex items-center justify-center border-2 mt-4 border-cyan-400 rounded-3xl">
                        <Image src={Track} alt="edit-events" className="place-items-center rounded-3xl w-full"/>
                     </div>
                     </div>
                 </FeatureCard>
-                <FeatureCard title="Interactive previews" description="Enagage your clients with prototypes that react to user actions">
-                <div className="flex items-center justify-center border-2 border-indigo-500 mt-4 rounded-3xl">
-                       <Image src={Preview} alt="preview" className="place-items-center rounded-3xl w-full"/>
+                <FeatureCard className="col-span-2"  title="Interactive previews" description="Enagage your clients with prototypes that react to user actions" >
+                <div className="flex items-center justify-center border-2 h-[300px] border-indigo-500 mt-12 rounded-3xl">
+                       <Image src={Preview1} alt="preview" className="place-items-center object-fit h-[250px] rounded-3xl w-full"/>
                     </div>
                 </FeatureCard>
-                <FeatureCard title="Keyboard quick actions" description="Powerful commands for you to create events more quickly">
-                <div className=" flex items-center justify-center border-2 mt-4 border-red-500 rounded-3xl">
-                    <Image src={Bookings} alt="book" className="place-items-center rounded-3xl w-full "/>
+                <FeatureCard className="col-span-2 md:col-start-2" title="Keyboard quick actions" description="Powerful commands for you to create events more quickly">
+                    <div className=" aspect-video border-2 border-green-500 rounded-3xl flex text-neutral-950 items-center gap-4 justify-center">
+                     <Key className="w-28">shift</Key>
+                     <Key>alt</Key>
+                     <Key>C</Key>
                     </div>
                 </FeatureCard>
              
             </div>
-            <div>
+            <div className="mt-8 flex flex-wrap gap-3 justify-center">
                 {features.map((feature) => (
-                    <div key={feature}>
-                        <span></span>
-                        <span>{feature}</span>
+                    <div key={feature} className="bg-neutral-900 gap-3 items-center border border-white/10 inline-flex px-3 py-1.5 rounded-2xl">
+                        <span className="bg-rose-400 text-neutral-950 size-5 text-xl rounded-full inline-flex items-center justify-center">&#10038;</span>
+                        <span className="font-medium">{feature}</span>
                         </div>
                 ))}
             </div>
