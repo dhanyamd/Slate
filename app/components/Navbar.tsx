@@ -19,7 +19,7 @@ export function Navbar(){
            <h1 className="hover:text-primary ">FAQ</h1>
            </div>
         </div>
-      <AuthModal/>
+      <AuthModal className="w-[120px]"/>
        </div>
        
     )
