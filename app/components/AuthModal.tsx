@@ -4,11 +4,17 @@ import Image from "next/image";
 import Logo from "@/public/Logo.png"
 import { signIn, signOut } from "../lib/auth";
 import { GithubAuthButton, GoogleAuthButton } from "./SubmitButton";
-export function AuthModal(){
+import { twMerge } from "tailwind-merge";
+type Props = {
+  className? : string,
+  children? : React.ReactNode
+}
+
+export function AuthModal({className, children} : Props){
   return (
     <Dialog>
         <DialogTrigger asChild>
-          <Button className="bg-rose-500 text-md">Sign in</Button>
+          <Button className={twMerge("bg-rose-500 text-md", className)}>Sign in</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[360px]">
          <DialogHeader className="flex flex-row gap-2 justify-center items-center">

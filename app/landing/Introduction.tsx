@@ -1,7 +1,7 @@
 import React from 'react'
 import Tag from './Tag'
 
-const text=`You are racing against time and heavy schedules everyday. Let us make it easy for you`
+const text=`You are racing against time and heavy schedules everyday.`
 
 export default function Introduction() {
   return (

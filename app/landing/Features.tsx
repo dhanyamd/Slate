@@ -17,7 +17,7 @@ const features = [
 
 export default function Features(){
     return (
-        <section className="py-20">
+        <section className="py-8">
             <div className="container">
                 <div className="flex justify-center">
                 <Tag>Features</Tag>

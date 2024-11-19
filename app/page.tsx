@@ -6,6 +6,7 @@ import Hero from "./landing/Hero";
 import Booking from "@/public/big.png"
 import Introduction from "./landing/Introduction";
 import Features from "./landing/Features";
+import FooterDetails from "./landing/FooterDetail";
 
 export default async function Home() {
   const session = await auth();
@@ -13,7 +14,7 @@ export default async function Home() {
     return redirect('/dashboard')
   }
   return (
-    <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">    
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">    
        <Navbar />
         <div className="flex flex-col justify-center pt-[1rem] items-center ">
            <Hero/>
@@ -29,6 +30,9 @@ export default async function Home() {
         </div>
         <div>
           <Features />
+        </div>
+        <div>
+          <FooterDetails/>
         </div>
     </div>
   )
