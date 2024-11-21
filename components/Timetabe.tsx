@@ -82,6 +82,7 @@ import { nylas } from "@/app/lib/nylas";
     );
   
     // Extract busy slots from Nylas data of your calendar
+    //@ts-ignore
     const busySlots = nylasData.data[0].timeSlots.map((slot: any) => ({
       start: fromUnixTime(slot.startTime),
       end: fromUnixTime(slot.endTime),
