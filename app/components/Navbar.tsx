@@ -8,7 +8,7 @@ export function Navbar(){
        <div className="flex py-5 items-center sticky justify-between">
        <Link href="/" className="flex items-center gap-1">
        <h4 className="text-3xl font-semibold pb-1">
-        <span className="">Slatee</span>
+        <span className="">Slate</span>
        </h4>
        </Link>
        <div className="hidden md:block">
