@@ -15,7 +15,7 @@ export default async function Home() {
     return redirect('/dashboard')
   }
   return (
-    <div className="max-w-7xl bg-black mx-auto px-4 sm:px-6 lg:px-8">    
+    <div className="max-w-7xl bg-black dark:text-white mx-auto px-4 sm:px-6 lg:px-8">    
        <Navbar />
         <div className="flex flex-col justify-center pt-[1rem] items-center ">
            <Hero/>
