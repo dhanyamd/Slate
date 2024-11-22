@@ -11,7 +11,7 @@ export default function Introduction() {
         <Tag >Introducing Slate</Tag>
         </div>
         <div className='text-4xl md:text-6xl lg:text-7xl text-center font-medium mt-10'>
-            <span>Your time and availability is very worthy. </span>
+            <span>Your time and availability is worthy. </span>
             <span className='text-white/15'>{text}</span>{""}
             <span className='text-rose-400 block'>That's why we built Slate, a lightweight tool  
                 <span> to handle your busy events effectively</span> </span>

@@ -48,8 +48,8 @@ export default function Features(){
             </div>
             <div className="mt-8 flex flex-wrap gap-3 justify-center">
                 {features.map((feature) => (
-                    <div key={feature} className="bg-neutral-900 gap-3 items-center border border-white/10 inline-flex px-3 py-1.5 rounded-2xl">
-                        <span className="bg-rose-400 text-neutral-950 size-5 text-xl rounded-full inline-flex items-center justify-center">&#10038;</span>
+                    <div key={feature} className="bg-neutral-900 gap-3  dark:text-white items-center border border-white/10 inline-flex px-3 py-1.5 rounded-2xl">
+                        <span className="bg-rose-400 dark: text-neutral-950 size-5 text-xl rounded-full inline-flex items-center justify-center">&#10038;</span>
                         <span className="font-medium">{feature}</span>
                         </div>
                 ))}

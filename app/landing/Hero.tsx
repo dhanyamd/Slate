@@ -4,7 +4,7 @@ import { AuthModalParttwo } from "./AuthModaltwo";
 
 export default function Hero(){
     return (
-        <section className="py-24">
+        <section className="py-24 sm:py-20">
           <div className="container flex flex-col items-center justify-center">
           <div className="inline-flex py-1 cursor-pointer hover:border-pink-500 border-2 px-3 bg-gradient-to-r from-teal-500 to-lime-500 text-neutral-950 rounded-full font-semibold">
            &#10038; check it out now → </div>
