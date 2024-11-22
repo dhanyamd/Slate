@@ -6,7 +6,7 @@ export default function FooterDetails(){
     
         <div className="mt-[8rem] flex">
             <div className="flex flex-col md:text-6xl max-w-7xl md:max-w-full text-3xl">
-                <div>
+                <div className="text-white/95">
                 Get instant access
                 </div>
             <div className="mt-5 font-medium md:block hidden md:text-xl md:max-w-xl max-w-md text-2xl text-neutral-500 " >
