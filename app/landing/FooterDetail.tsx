@@ -1,4 +1,3 @@
-import ButtonGroup from "@/components/ButtonGroup";
 import { AuthModal } from "../components/AuthModal";
 
 export default function FooterDetails(){
