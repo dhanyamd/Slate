@@ -15,7 +15,7 @@ export default async function Home() {
     return redirect('/dashboard')
   }
   return ( 
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">    
+    <div className="min-w-screen bg-black mx-auto px-4 sm:px-6 lg:px-8">    
        <Navbar />
         <div className="flex flex-col justify-center pt-[1rem] items-center ">
            <Hero/>
@@ -26,16 +26,16 @@ export default async function Home() {
        alt="bookform"
        />
         </div>
-        <div>
+        <div className="flex items-center justify-center">
           <Introduction/>
         </div>
-        <div>
+        <div className="flex items-center justify-center">
           <Features />
         </div>
-        <div>
+        <div className="flex items-center">
           <FooterDetails/>
         </div>
-        <div className="pt-[5rem] ">
+        <div className="pt-[5rem] flex justify-center ">
           <Footer/>
         </div>
     </div>

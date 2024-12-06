@@ -14,7 +14,7 @@ export default function FooterDetails(){
                 effortlessly 
             </div>
             </div>
-            <div className="flex flex-col justify-center mb-2 items-center ml-5 md:ml-64">
+            <div className="flex flex-col lg:pl-[6rem] justify-center mb-2 items-center ml-5 md:ml-64">
                <div className="font-semibold text-fuchsia-500 text-lg">
                    <span className="mr-10">Try for free today!</span> 
                </div>
