@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     siteName : "Slatee",
     images : [
       {
-        url : "/2.png",
+        url : "/public/2.png",
         width : 1200,
         height : 630
       }
