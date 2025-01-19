@@ -280,7 +280,7 @@ export async function updateEventTypeStatusAction(
     return {
       status: "success",
       message: "EventType Status updated successfully",
-    };
+    }
   } catch (error) {
     return {
       status: "error",

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph : {
     title : "Slatee",
     description : "Schedule, Cancel and Book meetings effortlessly",
-    url : "https://slatee.xyz",
+    url : "https://www.slatee.xyz",
     siteName : "Slatee",
     images : [
       {
