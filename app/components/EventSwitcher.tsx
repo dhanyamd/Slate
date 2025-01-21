@@ -18,9 +18,9 @@ export function MenuActiveSwitcher({
 
   useEffect(() => {
     if (state?.status === "success") {
-      toast.success(state.message);
+      toast.success(state.message)
     } else if (state?.status === "error") {
-      toast.error(state.message);
+      toast.error(state.message)
     }
   }, [state]);
 

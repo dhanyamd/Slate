@@ -4,7 +4,6 @@ import prisma from "../lib/db";
 import { getUser } from "../lib/hooks";
 import Link from "next/link";
 import { ExternalLink, Link2, Pen, Settings, Trash, User, User2Icon, Users2 } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { CopyLink } from "../components/CopyLink";
 import { MenuActiveSwitcher } from "../components/EventSwitcher";
@@ -15,7 +14,6 @@ async function getData( id : string){
     where: {
       id: id,
     },
-
     select: {
       eventType: {
         select: {
