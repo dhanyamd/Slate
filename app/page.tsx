@@ -35,7 +35,7 @@ export default async function Home() {
         <div className="flex items-center">
           <FooterDetails/>
         </div>
-        <div className="pt-[5rem] flex justify-centerla ">
+        <div className="pt-[5rem] flex justify-center ">
           <Footer/>
         </div>
     </div>
