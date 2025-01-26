@@ -5,7 +5,6 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
-import CoverImage from "@/public/2.png"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,7 +20,7 @@ export const metadata: Metadata = {
     siteName : "Slatee",
     images : [
       {
-        url : "/public/2.png",
+        url : '@/public/2.png',
         width : 1200,
         height : 630
       }
