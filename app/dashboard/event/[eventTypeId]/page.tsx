@@ -1,6 +1,7 @@
 import { EditEventTypeForm } from "@/app/components/EditEventTypeForm";
 import prisma from "@/app/lib/db";
 import { notFound } from "next/navigation";
+export const maxDuration = 300
 
 async function getData(eventTypeId : string){
     const data = await prisma.eventTypes.findUnique({

@@ -15,8 +15,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { useFormState } from "react-dom";
 
-export const runtime = 'edge'
-export const preferredRegion = 'home'
 export const maxDuration = 300
 
 type VideoCallProvider = "Zoom Meeting" | "Google Meet" | "Microsoft Teams"

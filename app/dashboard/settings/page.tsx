@@ -4,8 +4,7 @@ import { getUser } from '@/app/lib/hooks'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
-export const runtime = 'edge'
-export const preferredRegion = 'home'
+
 export const maxDuration = 300
 
 async function getData(id : string){
