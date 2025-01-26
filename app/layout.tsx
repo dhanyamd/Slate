@@ -18,15 +18,8 @@ export const metadata: Metadata = {
     description : "Schedule, Cancel and Book meetings effortlessly",
     url : "https://www.slatee.xyz",
     siteName : "Slatee",
-    images : [
-      {
-        url : '/public/2.png',
-        width : 1200,
-        height : 630
-      }
-    ],
     locale : "en-IN",
-    type : "website"
+    type : "website",
   }
 };
 

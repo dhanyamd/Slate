@@ -10,7 +10,7 @@ import FooterDetails from "./landing/FooterDetail";
 import Footer from "./landing/Footer";
 
 export default async function Home() {
-  const session = await auth();
+  const session = await auth()
   if(session?.user){
     return redirect('/dashboard')
   }

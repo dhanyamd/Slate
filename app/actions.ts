@@ -13,7 +13,7 @@ export async function onBoardingAction(prevState: any, formData: FormData) {
   const submission = await parseWithZod(formData, {
     schema: onboardUsernameValidation({
       async isUsernameUnique() {
-        const exisitngUsername = await prisma.user.findUnique({
+        const exisitngUsername = await prisma?.user?.findUnique({
           where: {
             userName: formData.get("userName") as string,
           },
