@@ -9,6 +9,10 @@ import { SubmitButton } from "@/app/components/SubmitButton";
 import { Separator } from "@/components/ui/separator";
 import { cancelMeetingAction } from "@/app/actions";
 
+export const runtime = 'edge'
+export const preferredRegion = 'home'
+export const maxDuration = 300
+
 async function getData(userId : string){
   const userData = await prisma.user.findUnique({
     where: {

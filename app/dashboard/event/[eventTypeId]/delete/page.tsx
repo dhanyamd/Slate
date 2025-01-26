@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
+export const runtime = 'edge'
+export const preferredRegion = 'home'
+export const maxDuration = 300
+
 export default function DeleteEventType({params} : {params : {eventTypeId : string}}){
     return (
         <Card className="max-w-[450px] w-full">
