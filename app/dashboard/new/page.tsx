@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useFormState } from "react-dom";
 
-export const maxDuration = 300
+export const maxDuration = 60
 
 type VideoCallProvider = "Zoom Meeting" | "Google Meet" | "Microsoft Teams"
 

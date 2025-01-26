@@ -5,7 +5,7 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/comp
 import Link from "next/link";
 
 
-export const maxDuration = 300
+export const maxDuration = 60
 
 export default function DeleteEventType({params} : {params : {eventTypeId : string}}){
     return (

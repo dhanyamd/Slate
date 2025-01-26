@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { notFound } from "next/navigation";
-export const maxDuration = 300
+export const maxDuration = 60
 async function getData(id : string){
   const data = await prisma.availability.findMany({
     where : {

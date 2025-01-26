@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { cancelMeetingAction } from "@/app/actions";
 
 
-export const maxDuration = 300
+export const maxDuration = 60
 
 async function getData(userId : string){
   const userData = await prisma.user.findUnique({

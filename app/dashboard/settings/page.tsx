@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import React from 'react'
 
 
-export const maxDuration = 300
+export const maxDuration = 60
 
 async function getData(id : string){
     const data = await prisma.user.findUnique({
